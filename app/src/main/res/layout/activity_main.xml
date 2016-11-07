@@ -34,7 +34,7 @@
     <SeekBar android:id="@+id/seek_bar_red"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100" />
+        android:max="255" />
 
     <View android:id="@+id/red"
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
     <SeekBar android:id="@+id/seek_bar_green"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100" />
+        android:max="255" />
 
     <View android:id="@+id/green"
         android:layout_width="match_parent"
@@ -96,7 +96,7 @@
     <SeekBar android:id="@+id/seek_bar_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100" />
+        android:max="255" />
 
     <View android:id="@+id/blue"
         android:layout_width="match_parent"
