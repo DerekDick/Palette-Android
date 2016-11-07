@@ -65,7 +65,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         switch (seekBar.getId()) {
             //Red
             case R.id.seek_bar_red: {
-                colorR = Integer.toHexString(((progress * 255 / 100) & 0x000000FF) | 0xFFFFFF00).substring(6);
+                colorR = Integer.toHexString((progress & 0x000000FF) | 0xFFFFFF00).substring(6);
                 red.setBackgroundColor(Color.parseColor("#" + colorR + "0000"));
                 textViewR.setText("0x" + colorR);
                 textViewR.setTextColor(Color.parseColor("#" + colorR + "0000"));
@@ -73,7 +73,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
             }
             //Green
             case R.id.seek_bar_green: {
-                colorG = Integer.toHexString(((progress * 255 / 100) & 0x000000FF) | 0xFFFFFF00).substring(6);
+                colorG = Integer.toHexString((progress & 0x000000FF) | 0xFFFFFF00).substring(6);
                 green.setBackgroundColor(Color.parseColor("#00" + colorG + "00"));
                 textViewG.setText("0x" + colorG);
                 textViewG.setTextColor(Color.parseColor("#00" + colorG + "00"));
@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
             }
             //Blue
             case R.id.seek_bar_blue: {
-                colorB = Integer.toHexString(((progress * 255 / 100) & 0x000000FF) | 0xFFFFFF00).substring(6);
+                colorB = Integer.toHexString((progress & 0x000000FF) | 0xFFFFFF00).substring(6);
                 blue.setBackgroundColor(Color.parseColor("#0000" + colorB));
                 textViewB.setText("0x" + colorB);
                 textViewB.setTextColor(Color.parseColor("#0000" + colorB));
@@ -97,7 +97,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         int g = ((ColorDrawable) green.getBackground()).getColor();
         int b = ((ColorDrawable) blue.getBackground()).getColor();
         palette.setBackgroundColor(r + g + b);
-        textViewRGB.setText("#" + colorR + colorG + colorB);
+        colorRGB = "#" + colorR + colorG + colorB;
+        textViewRGB.setText(colorRGB);
         textViewRGB.setTextColor(r + g + b);
     }
 }
