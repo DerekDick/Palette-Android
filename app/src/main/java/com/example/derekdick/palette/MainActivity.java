@@ -7,6 +7,7 @@ import android.widget.SeekBar;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
     private View palette;
@@ -22,9 +23,9 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     private TextView textViewG;
     private TextView textViewB;
     private String colorRGB = "#000000";
-    private String colorR = "0";
-    private String colorG = "0";
-    private String colorB = "0";
+    private String colorR = "00";
+    private String colorG = "00";
+    private String colorB = "00";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         textViewG = (TextView) findViewById(R.id.text_g);
         textViewB = (TextView) findViewById(R.id.text_b);
 
-        //Set listeners
+        // Set listeners
         seekBarRed.setOnSeekBarChangeListener(this);
         seekBarGreen.setOnSeekBarChangeListener(this);
         seekBarBlue.setOnSeekBarChangeListener(this);
@@ -63,36 +64,42 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         switch (seekBar.getId()) {
-            //Red
+            // Red
             case R.id.seek_bar_red: {
                 colorR = Integer.toHexString((progress & 0x000000FF) | 0xFFFFFF00).substring(6);
                 red.setBackgroundColor(Color.parseColor("#" + colorR + "0000"));
                 textViewR.setText("0x" + colorR);
                 textViewR.setTextColor(Color.parseColor("#" + colorR + "0000"));
+
                 break;
             }
-            //Green
+
+            // Green
             case R.id.seek_bar_green: {
                 colorG = Integer.toHexString((progress & 0x000000FF) | 0xFFFFFF00).substring(6);
                 green.setBackgroundColor(Color.parseColor("#00" + colorG + "00"));
                 textViewG.setText("0x" + colorG);
                 textViewG.setTextColor(Color.parseColor("#00" + colorG + "00"));
+
                 break;
             }
-            //Blue
+
+            // Blue
             case R.id.seek_bar_blue: {
                 colorB = Integer.toHexString((progress & 0x000000FF) | 0xFFFFFF00).substring(6);
                 blue.setBackgroundColor(Color.parseColor("#0000" + colorB));
                 textViewB.setText("0x" + colorB);
                 textViewB.setTextColor(Color.parseColor("#0000" + colorB));
+
                 break;
             }
-            //Exceptions
+
+            // Exceptions
             default: {
                 break;
             }
         }
-        //Mix the color
+        // Mix the color
         int r = ((ColorDrawable) red.getBackground()).getColor();
         int g = ((ColorDrawable) green.getBackground()).getColor();
         int b = ((ColorDrawable) blue.getBackground()).getColor();
