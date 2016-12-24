@@ -1,15 +1,14 @@
 package com.example.derekdick.palette;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     private View palette;
     private View red;
 
@@ -22,6 +21,9 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     private TextView textViewR;
     private TextView textViewG;
     private TextView textViewB;
+    private TextView textViewRNum;
+    private TextView textViewGNum;
+    private TextView textViewBNum;
     private String colorRGB = "#000000";
     private String colorR = "00";
     private String colorG = "00";
@@ -32,7 +34,17 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Find the views
+        // Initialize the private views
+        initViews();
+
+        // Set listeners
+        seekBarRed.setOnSeekBarChangeListener(this);
+        seekBarGreen.setOnSeekBarChangeListener(this);
+        seekBarBlue.setOnSeekBarChangeListener(this);
+    }
+
+    private void initViews() {
+        // Initialize the private views
         palette = findViewById(R.id.palette);
         red = findViewById(R.id.red);
         green = findViewById(R.id.green);
@@ -44,11 +56,9 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         textViewR = (TextView) findViewById(R.id.text_r);
         textViewG = (TextView) findViewById(R.id.text_g);
         textViewB = (TextView) findViewById(R.id.text_b);
-
-        // Set listeners
-        seekBarRed.setOnSeekBarChangeListener(this);
-        seekBarGreen.setOnSeekBarChangeListener(this);
-        seekBarBlue.setOnSeekBarChangeListener(this);
+        textViewRNum = (TextView) findViewById(R.id.text_r_num);
+        textViewGNum = (TextView) findViewById(R.id.text_g_num);
+        textViewBNum = (TextView) findViewById(R.id.text_b_num);
     }
 
     @Override
@@ -70,6 +80,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
                 red.setBackgroundColor(Color.parseColor("#" + colorR + "0000"));
                 textViewR.setText("0x" + colorR);
                 textViewR.setTextColor(Color.parseColor("#" + colorR + "0000"));
+                textViewRNum.setText(String.valueOf(progress));
+                textViewRNum.setTextColor(Color.parseColor("#" + colorR + "0000"));
 
                 break;
             }
@@ -80,6 +92,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
                 green.setBackgroundColor(Color.parseColor("#00" + colorG + "00"));
                 textViewG.setText("0x" + colorG);
                 textViewG.setTextColor(Color.parseColor("#00" + colorG + "00"));
+                textViewGNum.setText(String.valueOf(progress));
+                textViewGNum.setTextColor(Color.parseColor("#00" + colorG + "00"));
 
                 break;
             }
@@ -90,6 +104,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
                 blue.setBackgroundColor(Color.parseColor("#0000" + colorB));
                 textViewB.setText("0x" + colorB);
                 textViewB.setTextColor(Color.parseColor("#0000" + colorB));
+                textViewBNum.setText(String.valueOf(progress));
+                textViewBNum.setTextColor(Color.parseColor("#0000" + colorB));
 
                 break;
             }
